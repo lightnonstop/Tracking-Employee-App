@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind component;
+@tailwind utilities;
+.my-20::after{
+    content: "<>";
+}
+select{
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 0;
+}

@@ -1,15 +1,42 @@
 @tailwind base;
 @tailwind component;
 @tailwind utilities;
-.my-20::after{
-    content: "<>";
+.grid{
+    grid-template-columns: repeat(3, minmax(0, 240px));
+    gap: 1.3rem;
+    justify-content: center;
 }
-select{
+.styled-select{
+    width: 71%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    overflow: -moz-hidden-unscrollable;
+    background: url('./assets/images/bx-chevron-down.svg');
+    background-repeat: no-repeat;
+    background-position-x: 98%;
+    background-position-y: 40%;
+    background-size: 30px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 12px;
+    position: relative;
+}
+.styled-select select{
     -moz-appearance: none;
-    -webkit-appearance: none;
     appearance: none;
-    display: block;
-    width: 100%;
-    position: absolute;
-    top: 0;
+    background: transparent;
+}
+/* <h5></h5><h6></h6> */
+.standout{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px,rgb(51,51,51) 0px 0px 0px 7px;
+}
+@media screen and (max-width: 1024px) {
+    .grid{
+        grid-template-columns: repeat(2, minmax(0, 300px));
+    }
+}
+@media screen and (max-width: 724px) {
+    .grid{
+        grid-template-columns: repeat(1, minmax(0, 300px));
+    }
 }

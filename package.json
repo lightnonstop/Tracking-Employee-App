@@ -6,7 +6,8 @@
     "build": "webpack",
     "start": "webpack-dev-server --mode development --open",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "homepage": "https://lightnonstop.github.io/Employees-Tracking-App"
   },
   "author": "",
   "license": "ISC",

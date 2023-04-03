@@ -10,7 +10,7 @@ import Nav from "./Nav.jsx";
 import NotFound from "./NotFound.jsx";
 const App = () => {
 
-  const [selectedTeam, setTeam] = useState(JSON.parse(localStorage.getItem('selectedTeam')) || "Team B");
+  const [selectedTeam, setTeam] = useState(JSON.parse(localStorage.getItem('selectedTeam')) || "Team A");
 
   const [employees, setEmployees] = useState(JSON.parse(localStorage.getItem('employeeList')) || [
     {

@@ -135,7 +135,7 @@ const App = () => {
           <Route path="/GroupedTeamMembers" element={<GroupedTeamMembers employees={employees} selectedTeam={selectedTeam} setTeam={setTeam}/>}
           employees={employees} selectedTeam={selectedTeam} setTeam={setTeam}>
           </Route>
-          <Route path="*" element={<NotFound
+          <Route path="/*" element={<NotFound
           />}>
           </Route>
         </Routes>

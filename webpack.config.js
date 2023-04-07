@@ -1,78 +1,51 @@
-const loader = require('css-loader');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
-
+const path = require("path");
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 module.exports = {
-    mode: "production",
-    entry: './src/index.js',
+    devtool: false,
+    mode: 'development',
+    entry: "./src/index.js",
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js',
-        publicPath: '/'
+        filename: "main.[hash].js",
+        path: path.resolve(__dirname, "dist"),
     },
-    module:{
+    plugins:[
+        new HtmlWebpackPlugin({
+            template: "./src/template.html"
+        }),
+        new CleanWebpackPlugin(),
+    ],
+    module: {
         rules: [
             {
                 test: /\.css$/,
                 use: ["style-loader", "css-loader", "postcss-loader"],
             },
             {
-                test: /\.(jpe?g|png|gif|svg)$/i,
-                type: 'asset/resource',
-            },
-            {
                 test: /\.scss$/,
                 use: ["style-loader","css-loader", "sass-loader"],
             },
             {
-                exclude: /node_modules/,
-                test: /\.(jsx|js)$/,
-                use: [{
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            [
-                                '@babel/preset-env', {
-                                    "targets": "defaults"
-                                }
-                            ],
-                            '@babel/preset-react'
-                        ]
-                    }
-                }]
-            }
-        ]
-    },
-    devServer: {
-        static: {
-            directory: path.join(__dirname, 'dist')
-        },
-        historyApiFallback:  true,
-        compress: true,
-        port: 3000
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/index.html',
-            title: 'Track Employees',
-            minify: {
-                collapseWhitespace: true,
+                test: /\.(jsx|js)/,
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env', '@babel/preset-react']
+                }
             },
-            filename: './index.html',
-            inject: 'body',
-        }),
-    ],
-    optimization: {
-        minimizer: [
-            new TerserPlugin({
-                extractComments: false,
-                terserOptions: {
-                    format: {
-                        comments: false,
+            {
+                test: /\.html$/,
+                use: ["html-loader"]
+            },
+            {
+                test: /\.(svg|png|jpg|gif)$/,
+                use: {
+                    loader: "file-loader",
+                    options: {
+                        name: "[name].[hash].[ext]",
+                        outputPath: "images"
                     }
                 }
-            })
+            }
         ]
     }
 }
